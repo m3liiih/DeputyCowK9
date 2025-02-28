@@ -3,7 +3,7 @@ import random
 def new_round():
     print("Select K-9/Deputy/Cow or K/D/C:")
     global player_input
-    player_input = input("-- ")
+    player_input = input("-- ").upper()
     return player_input
 
 def game_intro():
