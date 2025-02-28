@@ -11,9 +11,16 @@ def game_intro():
     new_round()
 game_intro()
 
-def new_round():
-    print("Select K-9/Deputy/Cow or K/D/C:")
-    player_input = input("-- ")
+def check_input(player_move):
+    if player_move in ["K", "K-9", "K9"]:
+        player_move = "K-9"
+    elif player_move in ["D", "DEPUTY"]:
+        player_move = "Deputy"
+    elif player_move in ["C", "COW"]:
+        player_move = "Cow"
+    else:
+        print("Unregistered input. Please try again...\n")
+        new_round()
 
 def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
     computer_move = random.choice(move_options)
