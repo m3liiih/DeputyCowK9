@@ -5,3 +5,10 @@ def game_intro():
     "Select K-9/Deputy/Cow or K/D/C:")
     player_input = input("-- ")
 game_intro()
+
+def new_round():
+    print("Select K-9/Deputy/Cow or K/D/C:")
+    player_input = input("-- ")
+
+def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
+    computer_move = random.choice(move_options)
