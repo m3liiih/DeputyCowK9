@@ -79,7 +79,8 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose Cow. Draw!")
     return player_win, comp_win
 
-player_input = game_intro()
-computer_move = computer_turn()
-player_move = check_input(player_input)
-results(player_move, computer_move)
+while player_health != 0 or comp_health != 0:
+    player_input = game_intro()
+    computer_move = computer_turn()
+    player_move = check_input(player_input)
+    player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
