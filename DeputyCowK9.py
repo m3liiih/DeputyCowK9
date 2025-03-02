@@ -9,8 +9,8 @@ current_round = 0
 def health(player_health, comp_health, player_win, comp_win):
     player_health = max(0, player_health - comp_win)
     comp_health = max(0, comp_health - player_win)
-    print(f"Player: ", "#" * player_health, "-" * (3 - player_health))
-    print(f"Computer: ", "#" * comp_health, "-" * (3 - comp_health))
+    print("Player: " + "#" * player_health + "-" * (3 - player_health))
+    print("Computer: " + "#" * comp_health + "-" * (3 - comp_health))
     if player_health == 0 or comp_health == 0:
         if player_health == 0:
             print("Computer wins the match. You Lost!")
