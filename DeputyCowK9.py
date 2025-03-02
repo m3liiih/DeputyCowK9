@@ -4,20 +4,25 @@ player_health = 3
 player_win = 0
 comp_health = 3
 comp_win = 0
+current_round = 0
 
 def health(player_health, comp_health, player_win, comp_win):
-    player_health = player_health - comp_win
-    comp_health = comp_health - player_win
-    print(f"Player: " "#" * player_health, "-" * (3 - player_health))
-    print(f"Computer: " "#" * comp_health, "-" * (3 - comp_health))
+    player_health = max(0, player_health - comp_win)
+    comp_health = max(0, comp_health - player_win)
+    print(f"Player: ", "#" * player_health, "-" * (3 - player_health))
+    print(f"Computer: ", "#" * comp_health, "-" * (3 - comp_health))
+    return player_health, comp_health
 
 def new_round():
-    health(player_health, comp_health, player_win, comp_win)
+    if current_round >= 1:
+        health(player_health, comp_health, player_win, comp_win)
     print("Select K-9/Deputy/Cow or K/D/C:")
     player_input = input("-- ").upper()
     return player_input
 
 def game_intro():
+    print()
+    health(player_health, comp_health, player_win, comp_win)
     print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
     return new_round()
 
