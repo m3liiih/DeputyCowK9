@@ -71,6 +71,9 @@ def results(player_move, computer_move):
 def health(player_win, comp_win):
     player_health = 3
     comp_health = 3
+    player_health = player_health - comp_win
+    comp_health = comp_health - player_win
+    print(f"Player: " "#" * player_health, "        " "Computer: " "#" * comp_health)
 
 player_input = game_intro()
 computer_move = computer_turn()
