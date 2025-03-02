@@ -47,7 +47,7 @@ def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
     computer_move = random.choice(move_options)
     return computer_move
 
-def results(player_move, computer_move):
+def results(player_move, computer_move, player_win, comp_win):
     if player_move == "K-9":
         if computer_move == "Cow":
             player_win = 1
