@@ -50,45 +50,34 @@ def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
 def results(player_move, computer_move, player_win, comp_win):
     if player_move == "K-9":
         if computer_move == "Cow":
-            player_win = 1
-            comp_win = 0
+            player_win += 1
             print("Computer chose Cow. You Won!")
         elif computer_move == "Deputy":
-            player_win = 0
-            comp_win = 1
+            comp_win += 1
             print("Computer chose Deputy. You Lost!")
         else:
-            player_win = 0
-            comp_win = 0
             print("Computer chose K-9. Draw!")
     
     if player_move == "Deputy":
         if computer_move == "K-9":
-            player_win = 1
-            comp_win = 0
+            player_win += 1
             print("Computer chose K-9. You Won!")
         elif computer_move == "Cow":
-            player_win = 0
-            comp_win = 1
+            comp_win += 1
             print("Computer chose Cow. You Lost!")
         else:
-            player_win = 0
-            comp_win = 0
             print("Computer chose Deputy. Draw!")
 
     if player_move == "Cow":
         if computer_move == "Deputy":
-            player_win = 1
-            comp_win = 0
+            player_win += 1
             print("Computer chose Deputy. You Won!")
         elif computer_move == "K-9":
-            player_win = 0
-            comp_win = 1
+            comp_win += 1
             print("Computer chose K-9. You Lost!")
         else:
-            player_win = 0
-            comp_win = 0
             print("Computer chose Cow. Draw!")
+    return player_win, comp_win
 
 player_input = game_intro()
 computer_move = computer_turn()
