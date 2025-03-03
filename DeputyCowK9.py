@@ -22,11 +22,11 @@ def new_round():
     player_input = input("-- ").upper()
     return player_input
 
-def game_intro():
+def game_intro(player_health, comp_health):
     print()
-    health(player_health, comp_health, player_win, comp_win)
+    player_health, comp_health = health(player_health, comp_health, player_win, comp_win)
     print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
-    return new_round()
+    return new_round(), player_health, comp_health
 
 def check_input(player_input):
     if player_input in ["K", "K-9", "K9"]:
@@ -77,7 +77,7 @@ def results(player_move, computer_move, player_win, comp_win):
     return player_win, comp_win
 
 while player_health > 0 and comp_health > 0:
-    player_input = game_intro()
+    player_input, player_health, comp_health = game_intro(player_health, comp_health)
     computer_move = computer_turn()
     player_move = check_input(player_input)
     player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
