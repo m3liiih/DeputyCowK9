@@ -4,7 +4,6 @@ player_health = 3
 player_win = 0
 comp_health = 3
 comp_win = 0
-current_round = 0
 
 def health(player_health, comp_health, player_win, comp_win):
     player_health = max(0, player_health - comp_win)
@@ -19,8 +18,6 @@ def health(player_health, comp_health, player_win, comp_win):
     return player_health, comp_health
 
 def new_round():
-    if current_round >= 1:
-        health(player_health, comp_health, player_win, comp_win)
     print("Select K-9/Deputy/Cow or K/D/C:")
     player_input = input("-- ").upper()
     return player_input
