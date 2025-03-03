@@ -36,8 +36,8 @@ def check_input(player_input):
     elif player_input in ["C", "COW"]:
         player_move = "Cow"
     else:
-        print("Unregistered input. Please try again...\n")
-        new_round()
+        print("Unregistered input. Please try again...")
+        player_move = 404
     return player_move
 
 def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
