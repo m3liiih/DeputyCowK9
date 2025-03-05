@@ -5,9 +5,9 @@ player_win = 0
 comp_health = 3
 comp_win = 0
 
-def health(player_health, comp_health, player_win, comp_win):
-    player_health = max(0, player_health - comp_win)
-    comp_health = max(0, comp_health - player_win)
+def health(player_win, comp_win):
+    player_health = max(0, 3 - comp_win)
+    comp_health = max(0, 3 - player_win)
     print("Player: " + "#" * player_health + "-" * (3 - player_health))
     print("Computer: " + "#" * comp_health + "-" * (3 - comp_health))
     if player_health == 0 or comp_health == 0:
@@ -24,9 +24,12 @@ def new_round():
 
 def game_intro():
     print()
-    health(player_health, comp_health, player_win, comp_win)
-    print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
-    return new_round()
+    global player_health
+    global comp_health
+    player_health, comp_health = health(player_win, comp_win)
+    if comp_health > 0 and player_health > 0:
+        print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
+        return new_round()
 
 def check_input(player_input):
     if player_input in ["K", "K-9", "K9"]:
@@ -76,8 +79,11 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose Cow. Draw!")
     return player_win, comp_win
 
-while player_health > 0 and comp_health > 0:
+while True:
     player_input = game_intro()
-    computer_move = computer_turn()
-    player_move = check_input(player_input)
-    player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
+    if player_health > 0 and comp_health > 0:
+        computer_move = computer_turn()
+        player_move = check_input(player_input)
+        player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
+    else:
+        break
