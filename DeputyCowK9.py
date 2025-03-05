@@ -13,6 +13,9 @@ def new_round():
 
 #calculates and prints out current health
 def health(player_win, comp_win):
+    global player_health
+    global comp_health
+    print()
     player_health = max(0, 3 - comp_win)
     comp_health = max(0, 3 - player_win)
     print("Player: " + "#" * player_health + "-" * (3 - player_health))
@@ -28,10 +31,6 @@ def health(player_win, comp_win):
 #uses health function and updates global value
 #takes user input via nested new_round function
 def game_intro():
-    print()
-    global player_health
-    global comp_health
-    player_health, comp_health = health(player_win, comp_win)
     if comp_health > 0 and player_health > 0:
         print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
         return new_round()
@@ -87,6 +86,7 @@ def results(player_move, computer_move, player_win, comp_win):
     return player_win, comp_win
 
 while True:
+    health(player_win, comp_win)
     player_input = game_intro()
     if player_health > 0 and comp_health > 0:
         computer_move = computer_turn()
