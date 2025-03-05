@@ -24,6 +24,8 @@ def new_round():
 
 def game_intro():
     print()
+    global player_health
+    global comp_health
     player_health, comp_health = health(player_win, comp_win)
     print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
     return new_round(), player_health, comp_health
