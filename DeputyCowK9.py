@@ -5,7 +5,7 @@ player_win = 0
 comp_health = 3
 comp_win = 0
 
-def health(player_health, comp_health, player_win, comp_win):
+def health(player_win, comp_win):
     player_health = max(0, 3 - comp_win)
     comp_health = max(0, 3 - player_win)
     print("Player: " + "#" * player_health + "-" * (3 - player_health))
@@ -22,9 +22,9 @@ def new_round():
     player_input = input("-- ").upper()
     return player_input
 
-def game_intro(player_health, comp_health):
+def game_intro():
     print()
-    player_health, comp_health = health(player_health, comp_health, player_win, comp_win)
+    player_health, comp_health = health(player_win, comp_win)
     print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
     return new_round(), player_health, comp_health
 
