@@ -27,8 +27,9 @@ def game_intro():
     global player_health
     global comp_health
     player_health, comp_health = health(player_win, comp_win)
-    print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
-    return new_round()
+    if comp_health > 0 and player_health > 0:
+        print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
+        return new_round()
 
 def check_input(player_input):
     if player_input in ["K", "K-9", "K9"]:
@@ -80,6 +81,9 @@ def results(player_move, computer_move, player_win, comp_win):
 
 while True:
     player_input = game_intro()
-    computer_move = computer_turn()
-    player_move = check_input(player_input)
-    player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
+    if player_health > 0 and comp_health > 0:
+        computer_move = computer_turn()
+        player_move = check_input(player_input)
+        player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
+    else:
+        break
