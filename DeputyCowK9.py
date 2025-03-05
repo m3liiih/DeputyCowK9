@@ -28,7 +28,7 @@ def game_intro():
     global comp_health
     player_health, comp_health = health(player_win, comp_win)
     print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
-    return new_round(), player_health, comp_health
+    return new_round()
 
 def check_input(player_input):
     if player_input in ["K", "K-9", "K9"]:
@@ -78,10 +78,8 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose Cow. Draw!")
     return player_win, comp_win
 
-while True:
-    player_input, player_health, comp_health = game_intro()
-    if player_health == 0 or comp_health == 0:
-        break
+while player_health > 0 and comp_health > 0:
+    player_input = game_intro()
     computer_move = computer_turn()
     player_move = check_input(player_input)
     player_win, comp_win = results(player_move, computer_move, player_win, comp_win)
