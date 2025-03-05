@@ -5,7 +5,7 @@ player_win = 0
 comp_health = 3
 comp_win = 0
 
-def health(player_health, comp_health, player_win, comp_win):
+def health(player_win, comp_win):
     player_health = max(0, 3 - comp_win)
     comp_health = max(0, 3 - player_win)
     print("Player: " + "#" * player_health + "-" * (3 - player_health))
