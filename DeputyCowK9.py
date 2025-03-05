@@ -60,7 +60,7 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose Cow. You Won!")
         elif computer_move == "Deputy":
             comp_win += 1
-            print("Computer chose Deputy. You Lost!")
+            print("Computer chose Deputy. Dealing you 1 damage!")
         else:
             print("Computer chose K-9. Draw!")
     
@@ -70,7 +70,7 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose K-9. You Won!")
         elif computer_move == "Cow":
             comp_win += 1
-            print("Computer chose Cow. You Lost!")
+            print("Computer chose Cow. Dealing you 1 damage!")
         else:
             print("Computer chose Deputy. Draw!")
 
@@ -80,7 +80,7 @@ def results(player_move, computer_move, player_win, comp_win):
             print("Computer chose Deputy. You Won!")
         elif computer_move == "K-9":
             comp_win += 1
-            print("Computer chose K-9. You Lost!")
+            print("Computer chose K-9. Dealing you 1 damage!")
         else:
             print("Computer chose Cow. Draw!")
     return player_win, comp_win
