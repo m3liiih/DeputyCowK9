@@ -5,6 +5,13 @@ player_win = 0
 comp_health = 3
 comp_win = 0
 
+#takes user input for each round
+def new_round():
+    print("Select K-9/Deputy/Cow or K/D/C:")
+    player_input = input("-- ").upper()
+    return player_input
+
+#calculates and prints out current health
 def health(player_win, comp_win):
     player_health = max(0, 3 - comp_win)
     comp_health = max(0, 3 - player_win)
@@ -17,11 +24,9 @@ def health(player_win, comp_win):
             print("Player wins the match. Congrats!")
     return player_health, comp_health
 
-def new_round():
-    print("Select K-9/Deputy/Cow or K/D/C:")
-    player_input = input("-- ").upper()
-    return player_input
-
+#brief introduction to game mechanics
+#uses health function and updates global value
+#takes user input via nested new_round function
 def game_intro():
     print()
     global player_health
@@ -31,6 +36,7 @@ def game_intro():
         print("K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy")
         return new_round()
 
+#checks input and assigns proper move
 def check_input(player_input):
     if player_input in ["K", "K-9", "K9"]:
         player_move = "K-9"
@@ -47,6 +53,7 @@ def computer_turn(move_options = ["K-9", "Deputy", "Cow"]):
     computer_move = random.choice(move_options)
     return computer_move
 
+#outputs proper message based on player-computer moves
 def results(player_move, computer_move, player_win, comp_win):
     if player_move == "K-9":
         if computer_move == "Cow":
