@@ -57,30 +57,30 @@ def results(player_move, computer_move, player_win, comp_win):
     if player_move == "K-9":
         if computer_move == "Cow":
             player_win += 1
-            print("Computer chose Cow. You Won!")
+            print("Your K-9 bites Computer's Cow dealing 1 damage!")
         elif computer_move == "Deputy":
             comp_win += 1
-            print("Computer chose Deputy. Dealing you 1 damage!")
+            print("Computer's Deputy tases your K-9. Dealing you 1 damage!")
         else:
             print("Computer chose K-9. Draw!")
     
     if player_move == "Deputy":
         if computer_move == "K-9":
             player_win += 1
-            print("Computer chose K-9. You Won!")
+            print("Your Deputy tases Computer's K-9 dealing 1 damage!")
         elif computer_move == "Cow":
             comp_win += 1
-            print("Computer chose Cow. Dealing you 1 damage!")
+            print("Computer's Cow kicks your Deputy. Dealing you 1 damage!")
         else:
             print("Computer chose Deputy. Draw!")
 
     if player_move == "Cow":
         if computer_move == "Deputy":
             player_win += 1
-            print("Computer chose Deputy. You Won!")
+            print("Your Cow kicks Computer's Deputy dealing 1 damage!")
         elif computer_move == "K-9":
             comp_win += 1
-            print("Computer chose K-9. Dealing you 1 damage!")
+            print("Computer's K-9 bites your Cow. Dealing you 1 damage!")
         else:
             print("Computer chose Cow. Draw!")
     return player_win, comp_win
