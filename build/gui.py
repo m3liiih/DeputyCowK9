@@ -35,9 +35,28 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+
+button_image_3 = PhotoImage(
+    file=relative_to_assets("button_3.png"))
+button_k9 = Button(
+    image=button_image_3,
+    borderwidth=0,
+    bg="#626262",
+    activebackground="#626262",
+    highlightthickness=0,
+    command=lambda: print("button_k9 clicked"),
+    relief="flat"
+)
+button_k9.place(
+    x=175.00001525878906,
+    y=279.0,
+    width=135.41543579101562,
+    height=170.77078247070312
+)
+
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
-button_1 = Button(
+button_deputy = Button(
     image=button_image_1,
     borderwidth=0,
     bg="#626262",
@@ -46,7 +65,7 @@ button_1 = Button(
     command=lambda: print("button_1 clicked"),
     relief="flat"
 )
-button_1.place(
+button_deputy.place(
     x=310.0,
     y=274.0,
     width=100.0,
