@@ -83,31 +83,14 @@ button_cow = Button(
     command=lambda: print("button_2 clicked"),
     relief="flat"
 )
-button_2.place(
+button_cow.place(
     x=409.9999694824219,
     y=279.0,
     width=135.41543579101562,
     height=170.77076721191406
 )
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
-button_3 = Button(
-    image=button_image_3,
-    borderwidth=0,
-    bg="#626262",
-    activebackground="#626262",
-    highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
-    relief="flat"
-)
-button_3.place(
-    x=175.00001525878906,
-    y=279.0,
-    width=135.41543579101562,
-    height=170.77078247070312
-)
-
+#top black bar
 canvas.create_rectangle(
     0.0,
     0.0,
@@ -116,6 +99,7 @@ canvas.create_rectangle(
     fill="#363636",
     outline="")
 
+#bg to fix rounded corners (not working atm)
 canvas.create_rectangle(
     144.0,
     16.0,
