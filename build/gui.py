@@ -153,7 +153,7 @@ canvas.create_text(
     anchor="nw",
     text="Computer",
     fill="#000000",
-    font=("Jersey10 Regular", 13 * -1)
+    font=("Small Fonts", 13 * -1)
 )
 window.resizable(False, False)
 window.mainloop()
