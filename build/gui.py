@@ -119,7 +119,7 @@ canvas.create_text(
     anchor="nw",
     text="K-9 bites Cow, Deputy Tases K-9, Cow kicks Deputy",
     fill="#000000",
-    font=("Jersey10 Regular", 18 * -1)
+    font=("Small Fonts", 18 * -1)
 )
 
 canvas.create_rectangle(
@@ -136,7 +136,7 @@ canvas.create_text(
     anchor="nw",
     text="Player",
     fill="#000000",
-    font=("Jersey10 Regular", 13 * -1)
+    font=("Small Fonts", 13 * -1)
 )
 
 canvas.create_rectangle(
