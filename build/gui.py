@@ -108,6 +108,7 @@ canvas.create_rectangle(
     fill="#363636",
     outline="")
 
+#top middle text bg
 canvas.create_rectangle(
     144.0,
     16.0,
@@ -116,6 +117,7 @@ canvas.create_rectangle(
     fill="#D9D9D9",
     outline="")
 
+#top middle text
 canvas.create_text(
     146.0,
     20.0,
@@ -125,6 +127,7 @@ canvas.create_text(
     font=("Small Fonts", 18 * -1)
 )
 
+#top left text bg
 canvas.create_rectangle(
     12.0,
     10.0,
@@ -133,6 +136,7 @@ canvas.create_rectangle(
     fill="#D9D9D9",
     outline="")
 
+#top left player label
 canvas.create_text(
     18.0,
     13.0,
@@ -142,6 +146,7 @@ canvas.create_text(
     font=("Small Fonts", 13 * -1)
 )
 
+#top right text bg
 canvas.create_rectangle(
     592.0,
     10.0,
@@ -150,6 +155,7 @@ canvas.create_rectangle(
     fill="#D9D9D9",
     outline="")
 
+#top right computer label
 canvas.create_text(
     598.0,
     13.0,
