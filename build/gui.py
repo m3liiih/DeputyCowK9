@@ -114,7 +114,7 @@ canvas.create_rectangle(
     outline="")
 
 canvas.create_text(
-    149.0,
+    146.0,
     20.0,
     anchor="nw",
     text="K-9 bites Cow, Deputy Tases K-9, Cow kicks Deputy",
