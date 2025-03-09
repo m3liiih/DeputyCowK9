@@ -74,7 +74,7 @@ button_deputy.place(
 
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
-button_2 = Button(
+button_cow = Button(
     image=button_image_2,
     borderwidth=0,
     bg="#626262",
