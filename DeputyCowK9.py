@@ -1,8 +1,7 @@
 import random
 
-player_health = 3
+#initial win counter
 player_win = 0
-comp_health = 3
 comp_win = 0
 
 #takes user input for each round
