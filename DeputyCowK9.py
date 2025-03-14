@@ -4,6 +4,27 @@ import random
 player_win = 0
 comp_win = 0
 
+#game mode selection
+def game_mode():
+    print("\nSelect game mode: 1 - single life, 2 - three life")
+    mode_code = input("-- ")
+    global player_health
+    global comp_health
+    global fixed_hp
+    if mode_code != "1" and mode_code != "2":
+        print("Invalid game mode. Please try again.")
+        game_mode()
+    elif mode_code == "1":
+        player_health = 1
+        comp_health = 1
+        fixed_hp = 1
+    elif mode_code == "2":
+        player_health = 3
+        comp_health = 3
+        fixed_hp = 3
+    return mode_code
+game_mode()
+
 #takes user input for each round
 def new_round():
     print("Select K-9/Deputy/Cow or K/D/C:")
@@ -15,8 +36,8 @@ def health(player_win, comp_win):
     global player_health
     global comp_health
     print()
-    player_health = max(0, 3 - comp_win)
-    comp_health = max(0, 3 - player_win)
+    player_health = max(0, player_health - comp_win)
+    comp_health = max(0, comp_health - player_win)
     print("Player: " + "#" * player_health + "-" * (3 - player_health))
     print("Computer: " + "#" * comp_health + "-" * (3 - comp_health))
     if player_health == 0 or comp_health == 0:
