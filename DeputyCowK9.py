@@ -40,8 +40,8 @@ def health(player_win, comp_win):
     global player_health
     global comp_health
     print()
-    player_health = max(0, player_health - comp_win)
-    comp_health = max(0, comp_health - player_win)
+    player_health = max(0, fixed_hp - comp_win)
+    comp_health = max(0, fixed_hp - player_win)
     print("Player: " + "#" * player_health + "-" * (fixed_hp - player_health))
     print("Computer: " + "#" * comp_health + "-" * (fixed_hp - comp_health))
     if player_health == 0 or comp_health == 0:
