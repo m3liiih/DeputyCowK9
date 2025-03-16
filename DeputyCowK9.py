@@ -113,7 +113,8 @@ while True:
     if player_health != 999:
         health(player_win, comp_win)
     else:
-        print(f"\nPlayer: {player_win}")
+        print()
+        print(f"Player: {player_win}")
         print(f"Computer: {comp_win}")
     player_input = game_intro()
     if player_health > 0 and comp_health > 0:
