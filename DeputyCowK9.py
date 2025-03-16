@@ -6,12 +6,12 @@ comp_win = 0
 
 #game mode selection
 def game_mode():
-    print("\nSelect game mode: 1 - single life, 2 - three life")
+    print("\nSelect game mode: 1 - single life, 2 - three life, 3 - endless")
     mode_code = input("-- ")
     global player_health
     global comp_health
     global fixed_hp
-    if mode_code != "1" and mode_code != "2":
+    if mode_code != "1" and mode_code != "2" and mode_code != "3":
         print("Invalid game mode. Please try again.")
         game_mode()
     elif mode_code == "1":
@@ -22,6 +22,10 @@ def game_mode():
         player_health = 3
         comp_health = 3
         fixed_hp = 3
+    elif mode_code == "3":
+        player_health = 999
+        comp_health = 999
+        fixed_hp = 999
     return mode_code
 game_mode()
 
@@ -106,7 +110,12 @@ def results(player_move, computer_move, player_win, comp_win):
     return player_win, comp_win
 
 while True:
-    health(player_win, comp_win)
+    if player_health != 999:
+        health(player_win, comp_win)
+    else:
+        print()
+        print(f"Player: {player_win}")
+        print(f"Computer: {comp_win}")
     player_input = game_intro()
     if player_health > 0 and comp_health > 0:
         computer_move = computer_turn()
