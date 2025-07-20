@@ -1,8 +1,13 @@
-# This file was first initialized by Tkinter Designer
-
+import random
 from pathlib import Path
-from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+from tkinter import Tk, Canvas, Button, PhotoImage, Label
 
+#global variables
+player_win = 0
+comp_win = 0
+player_health = 3
+comp_health = 3
+fixed_hp = 3
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
@@ -12,151 +17,174 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 
+#calculates and update health
+def update_health():
+    global player_health, comp_health
+    player_health = max(0, fixed_hp - comp_win)
+    comp_health = max(0, fixed_hp - player_win)
+
+    player_health_label.config(text="Player: " + "#" * player_health + "-" * (fixed_hp - player_health))
+    comp_health_label.config(text="Comp: " + "#" * comp_health + "-" * (fixed_hp - comp_health))
+
+    if player_health == 0:
+        result_label.config(text="Computer wins the match. You Lost!")
+    elif comp_health == 0:
+        result_label.config(text="Player wins the match. Congrats!")
+    else:
+        result_label.config(text="")
+
+    #enables buttons after updating health
+    enable_buttons()
+
+
+def disable_buttons():
+    button_k9.config(state="disabled")
+    button_deputy.config(state="disabled")
+    button_cow.config(state="disabled")
+
+
+def enable_buttons():
+    button_k9.config(state="normal")
+    button_deputy.config(state="normal")
+    button_cow.config(state="normal")
+
+
+#displays countdown
+def countdown_display(player_move, computer_move):
+    result_label.config(text="3")
+    window.after(500, lambda: result_label.config(text="2"))
+    window.after(1000, lambda: result_label.config(text="1"))
+    window.after(1500, lambda: display_choices(player_move, computer_move))
+
+
+#displays player and computer choices
+def display_choices(player_move, computer_move):
+    result_label.config(text=f"You chose {player_move}          Computer chose {computer_move}")
+    window.after(1500, lambda: check_winner(player_move, computer_move))
+
+
+#new round
+def new_round(player_move):
+    if player_health > 0 and comp_health > 0:
+        disable_buttons()
+        computer_move = computer_turn()
+        countdown_display(player_move, computer_move)
+
+
+# Function to determine the computer's move
+def computer_turn():
+    return random.choice(["K-9", "Deputy", "Cow"])
+
+
+# Function to check the winner and update results
+def check_winner(player_move, computer_move):
+    global player_win, comp_win
+
+    if player_move == "K-9":
+        if computer_move == "Cow":
+            player_win += 1
+            result_label.config(text="K-9 bites Cow dealing Computer 1 damage!")
+        elif computer_move == "Deputy":
+            comp_win += 1
+            result_label.config(text="Deputy tases K-9. Dealing you 1 damage!")
+        else:
+            result_label.config(text="It's a draw!")
+
+    elif player_move == "Deputy":
+        if computer_move == "K-9":
+            player_win += 1
+            result_label.config(text="Deputy tases K-9 dealing Computer 1 damage!")
+        elif computer_move == "Cow":
+            comp_win += 1
+            result_label.config(text="Cow kicks Deputy. Dealing you 1 damage!")
+        else:
+            result_label.config(text="It's a draw!")
+
+    elif player_move == "Cow":
+        if computer_move == "Deputy":
+            player_win += 1
+            result_label.config(text="Cow kicks Deputy dealing Computer 1 damage!")
+        elif computer_move == "K-9":
+            comp_win += 1
+            result_label.config(text="K-9 bites Cow. Dealing you 1 damage!")
+        else:
+            result_label.config(text="It's a draw!")
+
+    window.after(2300, update_health)
+
+
+#window setup
 window = Tk()
-
 window.geometry("720x450")
-window.configure(bg = "#626262")
+window.configure(bg="#626262")
 
-
+#background canvas
 canvas = Canvas(
     window,
-    bg = "#626262",
-    height = 450,
-    width = 720,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
+    bg="#626262",
+    height=450,
+    width=720,
+    bd=0,
+    highlightthickness=0,
+    relief="ridge"
 )
+canvas.place(x=0, y=0)
 
-canvas.place(x = 0, y = 0)
+button_image_3 = PhotoImage(file=relative_to_assets("button_3.png"))
+button_image_1 = PhotoImage(file=relative_to_assets("button_1.png"))
+button_image_2 = PhotoImage(file=relative_to_assets("button_2.png"))
 
-button_image_3 = PhotoImage(
-    file=relative_to_assets("button_3.png"))
 button_k9 = Button(
     image=button_image_3,
     borderwidth=0,
     bg="#626262",
     activebackground="#626262",
     highlightthickness=0,
-    command=lambda: print("button_k9 clicked"),
+    command=lambda: new_round("K-9"),
     relief="flat"
 )
-button_k9.place(
-    x=175.00001525878906,
-    y=279.0,
-    width=135.41543579101562,
-    height=170.77078247070312
-)
+button_k9.place(x=175, y=279, width=135, height=170)
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
 button_deputy = Button(
     image=button_image_1,
     borderwidth=0,
     bg="#626262",
     activebackground="#626262",
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=lambda: new_round("Deputy"),
     relief="flat"
 )
-button_deputy.place(
-    x=310.0,
-    y=274.0,
-    width=100.0,
-    height=150.0
-)
+button_deputy.place(x=310, y=274, width=100, height=150)
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
 button_cow = Button(
     image=button_image_2,
     borderwidth=0,
     bg="#626262",
     activebackground="#626262",
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: new_round("Cow"),
     relief="flat"
 )
-button_cow.place(
-    x=409.9999694824219,
-    y=279.0,
-    width=135.41543579101562,
-    height=170.77076721191406
-)
+button_cow.place(x=410, y=279, width=135, height=170)
 
-#top black bar
-canvas.create_rectangle(
-    0.0,
-    0.0,
-    720.0,
-    61.0,
-    fill="#363636",
-    outline="")
+#health bars
+player_health_label = Label(window, text="Player: ###", fg="black", bg="#D9D9D9", font=("Small Fonts", 13))
+player_health_label.place(x=23, y=18)
 
-#bg to fix rounded corners (not working atm)
-canvas.create_rectangle(
-    144.0,
-    16.0,
-    575.0,
-    46.0,
-    fill="#363636",
-    outline="")
+comp_health_label = Label(window, text="Comp: ###", fg="black", bg="#D9D9D9", font=("Small Fonts", 13))
+comp_health_label.place(x=603, y=18)
 
-#top middle text bg
-canvas.create_rectangle(
-    144.0,
-    16.0,
-    575.0,
-    46.0,
-    fill="#D9D9D9",
-    outline="")
+info_label = Label(window, text="K-9 bites Cow, Deputy tases K-9, Cow kicks Deputy", fg="black", bg="#D9D9D9", font=("Small Fonts", 12), wraplength=400)
+info_label.place(x=170, y=18)
 
-#top middle text
-canvas.create_text(
-    146.0,
-    20.0,
-    anchor="nw",
-    text="K-9 bites Cow, Deputy Tases K-9, Cow kicks Deputy",
-    fill="#000000",
-    font=("Small Fonts", 18 * -1)
-)
+result_label = Label(window, text="", fg="white", bg="#626262", font=("Small Fonts", 14))
+result_label.place(x=360, y=200, anchor="center")
 
-#top left text bg
-canvas.create_rectangle(
-    12.0,
-    10.0,
-    127.0,
-    50.0,
-    fill="#D9D9D9",
-    outline="")
+#top ui elements
+canvas.create_rectangle(0, 0, 720, 61, fill="#363636", outline="")
+canvas.create_rectangle(144, 16, 575, 46, fill="#D9D9D9", outline="")
+canvas.create_rectangle(12, 10, 127, 50, fill="#D9D9D9", outline="")
+canvas.create_rectangle(592, 10, 707, 50, fill="#D9D9D9", outline="")
 
-#top left player label
-canvas.create_text(
-    18.0,
-    13.0,
-    anchor="nw",
-    text="Player",
-    fill="#000000",
-    font=("Small Fonts", 13 * -1)
-)
-
-#top right text bg
-canvas.create_rectangle(
-    592.0,
-    10.0,
-    707.0,
-    50.0,
-    fill="#D9D9D9",
-    outline="")
-
-#top right computer label
-canvas.create_text(
-    598.0,
-    13.0,
-    anchor="nw",
-    text="Computer",
-    fill="#000000",
-    font=("Small Fonts", 13 * -1)
-)
 window.resizable(False, False)
 window.mainloop()
